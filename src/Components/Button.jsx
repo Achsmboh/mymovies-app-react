@@ -13,7 +13,7 @@ export class ButtonPrimary extends Component {
 export class ButtonSecondary extends Component {
   render() {
     return (
-      <button className="p-3 border rounded-lg bg-slate-200 text-black my-5 w-96" onClick={this.props.onClick}>
+      <button className="p-3 border rounded-lg bg-slate-200 text-black m-5" onClick={this.props.onClick}>
         {this.props.label}
       </button>
     );

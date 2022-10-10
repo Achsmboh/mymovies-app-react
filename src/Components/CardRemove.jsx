@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { ButtonPrimary } from "./Button";
 
-class Card extends Component {
+class CardRemove extends Component {
   render() {
     return (
       <div className="flex flex-col justify-center p-4 shadow-lg rounded-lg border border-red-700 m-2 bg-white">
@@ -10,10 +10,10 @@ class Card extends Component {
         </div>
 
         <p className="text-center">{this.props.title}</p>
-        <ButtonPrimary label={`Add Favorite`} onClick={this.props.addFavorite} />
+        <ButtonPrimary label={`Remove Favorite`} onClick={this.props.removeFavorite} />
       </div>
     );
   }
 }
 
-export default Card;
+export default CardRemove;
