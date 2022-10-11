@@ -70,16 +70,16 @@ function Home(props) {
   return (
     <>
       <Layout>
-        <div className="w-full flex flex-col">
-          <p className="text-center my-10 p-1 font-bold text-lg text-white">{title}</p>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+        <div className="flex w-full flex-col">
+          <p className="my-10 p-1 text-center text-lg font-bold text-white">{title}</p>
+          <div className="m-4 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
             {loading
               ? skeleton.map((item) => <Loading key={item} />)
               : datas.map((data) => <Card key={data.id} image={data.poster_path} title={data.title} judul={data.title} onNavigate={() => props.navigate(`/detail/${data.id}`)} addFavorite={() => handleFav(data)} />)}
             <p></p>
           </div>
           <div className="flex justify-center">
-            <ButtonSecondary className="w-96" label="Load More" onClick={() => fetchData()} />
+            <ButtonSecondary label="Load More" onClick={() => fetchData()} />
           </div>
         </div>
       </Layout>

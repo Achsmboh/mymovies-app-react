@@ -1,21 +1,17 @@
-import React, { Component } from "react";
-
-class Loading extends Component {
-  render() {
-    return (
-      <div className="grow m-2 p-3 flex flex-col justify-between">
-        <div className="animate-pulse flex space-x-4">
-          <div className="flex-1 space-y-5 py-1">
-            <div className="h-52 bg-slate-700 rounded" />
-            <div className="space-y-2">
-              <div className="h-6 bg-slate-700 rounded" />
-              <div className="h-6 bg-slate-700 rounded" />
-            </div>
+function Loading() {
+  return (
+    <div className="m-2 flex grow flex-col justify-between p-3">
+      <div className="flex animate-pulse space-x-4">
+        <div className="flex-1 space-y-5 py-1">
+          <div className="h-52 rounded bg-slate-700" />
+          <div className="space-y-2">
+            <div className="h-6 rounded bg-slate-700" />
+            <div className="h-6 rounded bg-slate-700" />
           </div>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default Loading;

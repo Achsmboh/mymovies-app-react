@@ -1,14 +1,28 @@
-import React, { Component } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React from "react";
+import { useState, useMemo, useEffect } from "react";
 
-import Home from "../Pages/ListOfNowPlayingMovies";
-import DetailMovie from "../Pages/DetailMovie";
-import Example from "../Pages/Example";
-import ListFavoriteMoviesPage from "../Pages/ListFavoriteMoviesPage";
+import Home from "Pages/ListOfNowPlayingMovies";
+import DetailMovie from "Pages/DetailMovie";
+import Example from "Pages/Example";
+import ListFavoriteMoviesPage from "Pages/ListFavoriteMoviesPage";
 
-class App extends Component {
-  render() {
-    return (
+import { ThemeContext } from "Utils/context";
+
+function App() {
+  const [isLight, setIsLight] = useState(true);
+  const theme = useMemo(() => ({ isLight, setIsLight }), [isLight]);
+
+  useEffect(() => {
+    if (isLight) {
+      document.documentElement.classList.remove("dark");
+    } else {
+      document.documentElement.classList.add("dark");
+    }
+  }, [isLight]);
+
+  return (
+    <ThemeContext.Provider value={theme}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -18,8 +32,8 @@ class App extends Component {
           <Route path="/example" element={<Example />} />
         </Routes>
       </BrowserRouter>
-    );
-  }
+    </ThemeContext.Provider>
+  );
 }
 
 export default App;

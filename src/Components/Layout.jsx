@@ -1,31 +1,32 @@
-import React, { Component } from "react";
-import { ButtonPrimary /*ButtonSecondary*/ } from "./Button";
+import { ButtonPrimary, ButtonSecondary } from "./Button";
 // import { FcClapperboard } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import { ThemeContext } from "Utils/context";
+import { useContext } from "react";
 
-export class Layout extends Component {
-  render() {
-    return (
-      <div className="w-full h-screen overflow-auto bg-slate-600">
-        <nav className="w-full p-4 bg-black sticky top-0 flex flex-col md:flex-row justify-between items-center">
-          <Link to="/">
-            <h1 className="text-white font-bold text-lg">My Movie</h1>
+const Layout = ({ children }) => {
+  const { isLight, setIsLight } = useContext(ThemeContext);
+
+  return (
+    <div className="h-screen w-full overflow-auto bg-slate-300 dark:bg-slate-500">
+      <nav className="sticky top-0 flex w-full flex-col items-center justify-between bg-slate-700 p-4 dark:bg-slate-900 md:flex-row">
+        <Link to="/">
+          <h1 className="text-lg font-bold text-white">My Movie</h1>
+        </Link>
+
+        <div className="flex items-center justify-around">
+          <Link to="/ListFavoriteMoviesPage">
+            <ButtonPrimary label={"Favorit"} />
           </Link>
 
-          <div className="flex justify-around items-center">
-            <Link to="/ListFavoriteMoviesPage">
-              <ButtonPrimary label={"Favorit"} />
-            </Link>
-
-            {/* <ButtonSecondary label={"SandBox"} />
-            <FcClapperboard className=" h-10 w-20" /> */}
-          </div>
-        </nav>
-        {this.props.children}
-        <footer></footer>
-      </div>
-    );
-  }
-}
+          <ButtonSecondary label={isLight ? "Light Mode" : "DarkMode"} onClick={() => setIsLight(!isLight)} />
+          {/* <FcClapperboard className=" h-10 w-20" /> */}
+        </div>
+      </nav>
+      {children}
+      <footer></footer>
+    </div>
+  );
+};
 
 export default Layout;

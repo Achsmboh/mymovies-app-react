@@ -1,19 +1,16 @@
-import React, { Component } from "react";
 import { ButtonPrimary } from "./Button";
 
-class Card extends Component {
-  render() {
-    return (
-      <div className="flex flex-col justify-center p-4 shadow-lg rounded-lg border border-red-700 m-2 bg-white">
-        <div onClick={this.props.onNavigate} className="flex justify-center w-full h-full">
-          <img src={`https://image.tmdb.org/t/p/w500${this.props.image}`} alt={this.props.title} />
-        </div>
-
-        <p className="text-center">{this.props.title}</p>
-        <ButtonPrimary label={`Add Favorite`} onClick={this.props.addFavorite} />
+function Card(props) {
+  return (
+    <div className="m-2 flex flex-col justify-center rounded-lg border border-red-200 bg-slate-200 p-4 shadow-lg dark:border-white dark:bg-slate-600">
+      <div onClick={props.onNavigate} className="flex h-full w-full justify-center">
+        <img src={`https://image.tmdb.org/t/p/w500${props.image}`} alt={props.title} />
       </div>
-    );
-  }
+
+      <p className="text-center dark:text-white">{props.title}</p>
+      <ButtonPrimary label={`Add Favorite`} onClick={props.addFavorite} />
+    </div>
+  );
 }
 
 export default Card;

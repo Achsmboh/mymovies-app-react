@@ -37,16 +37,16 @@ function DetailMovie(props) {
   return (
     <Layout>
       <div className="lg:p-10">
-        <div className="lg:rounded-lg grid md:grid-rows-3 md:grid-flow-col gap-5 items-center p-5 border border-red-700 shadow-lg bg-yellow-100">
-          <div className="md:row-span-3 flex flex-col justify-center p-4 shadow-lg rounded-lg border border-red-700 m-2 bg-white">
+        <div className="m-10 grid items-center gap-5 border border-red-700 bg-slate-200 p-5 shadow-lg dark:border-white dark:bg-slate-400 md:grid-flow-col md:grid-rows-3 lg:rounded-lg">
+          <div className="m-2 flex flex-col justify-center rounded-lg border border-red-700 bg-white p-4 text-lg shadow-lg dark:border-white dark:bg-slate-500 md:row-span-3">
             <img src={`https://image.tmdb.org/t/p/w500${data?.poster_path}`} alt={props.title} />
           </div>
           <div className="md:col-span-2">
-            <h1 className="font-bold text-lg">
+            <h1 className="text-lg font-bold">
               <p>{data?.title}</p>
             </h1>
           </div>
-          <div className="md:row-span-2 md:col-span-2">
+          <div className="md:col-span-2 md:row-span-2">
             <p>
               <strong>Runtime :</strong> {data?.runtime}
             </p>
@@ -72,7 +72,7 @@ function DetailMovie(props) {
         </div>
       </div>
 
-      <div className="grid lg:grid-cols-2 gap-2 place-content-around">
+      <div className="grid place-content-around gap-2 lg:grid-cols-2">
         {videos.map((video) => (
           <iframe
             id={video.id}
