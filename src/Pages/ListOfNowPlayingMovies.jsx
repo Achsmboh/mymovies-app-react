@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import axios from "axios";
 import "Styles/App.css";
 
@@ -9,9 +10,11 @@ import { ButtonSecondary } from "Components/Button";
 import Card from "Components/Card";
 import Layout from "Components/Layout";
 import Loading from "Components/Loading";
+import { setFavorites } from "Utils/Redux/Reducers/reducer";
 
 function Home(props) {
   // ---=== CONSTRUCTOR START ===---
+  const dispath = useDispatch();
   const [title] = useState("NOW PLAYING");
   const [datas, setData] = useState([]);
   const [skeleton] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
@@ -46,20 +49,13 @@ function Home(props) {
   function handleFav(movie) {
     const getMovies = localStorage.getItem("favMovies");
     if (getMovies) {
-      /*
-      cek film yang diinputkan ada di local storage atau tidak (saran menggunakan method .find)
-      if movie.id === data.id
-
-      - kalau gak ada, push ke parsedMovies
-      - kalau ada, kasih alert (film sudah ditambahkan sebelumnya)
-      */
-
       const parsedMovies = JSON.parse(getMovies);
       const favMovie = parsedMovies.find((obj) => obj.title === movie.title);
       if (favMovie) return alert(`Film Sudah ditambahkan`);
 
       parsedMovies.push(movie);
       const temp = JSON.stringify(parsedMovies);
+      dispath(setFavorites(parsedMovies));
       localStorage.setItem("favMovies", temp);
     } else {
       const temp = JSON.stringify([movie]);
